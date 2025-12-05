@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data (IMPORTANT - never commit data!)
+data/13f_parquet/
+data/cache/
+data/models/
+data/signals/
+*.parquet
+*.csv
+*.pkl
+*.pickle
+
+# Logs
+logs/
+*.log
+
+# Reports
+reports/
+
+# Configuration (IMPORTANT - never commit secrets!)
+config/config.yaml
+config/config.prod.yaml
+config/*_credentials.yaml
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Secrets (CRITICAL!)
+*secret*
+*password*
+*api_key*
+*credentials*

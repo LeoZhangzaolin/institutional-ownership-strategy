@@ -1,0 +1,189 @@
+# ==================== INSTITUTIONAL OWNERSHIP STRATEGY CONFIGURATION ====================
+# Complete configuration for production deployment
+# Edit values marked with YOUR_* placeholders
+
+# ==================== DATA CONFIGURATION ====================
+data:
+  wrds_username: "YOUR_WRDS_USERNAME"  # YOUR WRDS USERNAME
+  start_date: "2013-01-01"
+  end_date: "2025-09-30"
+  
+  paths:
+    13f_parquet: "data/13f_parquet"  # Your partitioned 13F data
+    cache: "data/cache"
+    models: "data/models"
+    signals: "data/signals"
+    logs: "logs"
+
+# ==================== FEATURE ENGINEERING ====================
+features:
+  # Base feature prefixes to include
+  include_prefixes:
+    - "mom_"
+    - "vol_"
+    - "io_"
+    - "sk_"
+    - "skret_"
+    - "skal_"
+  
+  # Feature engineering toggles
+  enable_feature_engineering: true
+  enable_sector_models: false  # Set true if you have sector data
+  
+  # Feature limits
+  max_interaction_features: 15
+  max_nonlinear_features: 18
+  max_rank_features: 12
+
+# ==================== MODEL CONFIGURATION ====================
+models:
+  # Model toggles
+  enable_regime_models: true
+  enable_ensemble: true
+  enable_smart_ensemble: true
+  enable_quality_filters: true
+  enable_optimization: true
+  enable_adaptive_k: true
+  
+  # Training parameters
+  max_train_q: 31  # Maximum quarters for training
+  tune_every_q: 2  # Retune hyperparameters every N quarters
+  reuse_best_hp: true
+  random_seed: 42
+  
+  # Cross-validation
+  n_splits: 2
+  min_train_q: 12  # Minimum quarters needed
+  embargo_q: 1  # Embargo period
+  val_groups: 1
+  
+  # Halving CV parameters
+  use_halving: true
+  halving_factor: 3
+  n_halving_candidates: 24
+  n_jobs_cv: -1
+  
+  # Speed optimization
+  n_parallel_models: 4  # Parallel model training
+
+# ==================== REGIME PARAMETERS ====================
+regimes:
+  high_vol:
+    risk_aversion: 3.5
+    max_pos: 0.10
+    top_k: 7
+    turnover_penalty: 0.002
+  
+  bear:
+    risk_aversion: 3.0
+    max_pos: 0.12
+    top_k: 8
+    turnover_penalty: 0.0015
+  
+  normal:
+    risk_aversion: 1.5
+    max_pos: 0.16
+    top_k: 11
+    turnover_penalty: 0.0008
+  
+  bull:
+    risk_aversion: 0.8
+    max_pos: 0.22
+    top_k: 13
+    turnover_penalty: 0.0003
+
+# Regime detection parameters
+regime_detection:
+  vol_lookback: 8
+  vol_threshold: 0.15
+
+# Ensemble parameters
+ensemble:
+  var_lookback_q: 8
+  min_prediction_confidence: 0.15
+  min_model_agreement: 0.5
+
+# ==================== PORTFOLIO CONFIGURATION ====================
+portfolio:
+  initial_capital: 1000000  # $1M starting capital
+  universe: "sp500"  # "sp500" or "all"
+  predict_excess: true  # Predict excess returns
+  ann: 4  # Annualization factor (quarterly)
+
+# ==================== TRADING CONFIGURATION ====================
+trading:
+  broker: "interactive_brokers"  # "interactive_brokers" or "alpaca"
+  paper_trading: true  # *** START WITH TRUE! ***
+  
+  # Execution parameters
+  order_type: "limit"
+  limit_buffer_bps: 20  # 20 basis points buffer
+  time_in_force: "DAY"
+  
+  # Timing
+  execution_time: "09:45"  # After market open (HH:MM)
+
+# Transaction costs
+costs:
+  buy_bps: 10
+  sell_bps: 10
+  impact_bps_per_turnover: 10
+  short_borrow_annual_bps: 200
+
+# ==================== BROKER CONFIGURATION ====================
+broker:
+  interactive_brokers:
+    host: "127.0.0.1"
+    port: 7497  # 7497 for live, 7496 for paper
+    client_id: 1
+    timeout: 60
+  
+  alpaca:
+    api_key: "YOUR_API_KEY_HERE"
+    secret_key: "YOUR_SECRET_KEY_HERE"
+    base_url: "https://paper-api.alpaca.markets"  # Paper trading
+
+# ==================== RISK MANAGEMENT ====================
+risk:
+  # Loss limits
+  max_daily_loss: 0.02  # 2%
+  max_drawdown: 0.15  # 15%
+  max_single_position_loss: 0.01  # 1%
+  
+  # Circuit breakers
+  circuit_breaker_enabled: true
+  halt_on_daily_loss: true
+  halt_on_drawdown: true
+  
+  # Monitoring thresholds
+  min_fill_rate: 0.85  # 85%
+  alert_fill_rate: 0.80  # Alert if below 80%
+  
+  # Position limits
+  max_positions_long: 20
+  max_positions_short: 20
+
+# ==================== MONITORING ====================
+monitoring:
+  enable_alerts: true
+  alert_email: "your-email@example.com"  # YOUR EMAIL
+  
+  # Logging
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_to_file: true
+  log_to_console: true
+  
+  # Performance tracking
+  track_ic: true
+  track_regime_accuracy: true
+  track_model_contributions: true
+  
+  # Daily reports
+  generate_daily_report: true
+  report_time: "16:30"  # After market close
+
+# ==================== PATHS ====================
+paths:
+  config: "config.yaml"
+  requirements: "requirements.txt"
+  readme: "README.md"
