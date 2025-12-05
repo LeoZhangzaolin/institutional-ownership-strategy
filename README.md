@@ -11,8 +11,8 @@
 
 | What You Need | Where to Go |
 |---------------|-------------|
-| 🚀 **Get started fast** | [QUICKSTART.md](QUICKSTART.md) - Commands & 10-min setup |
-| 📖 **Complete deployment** | [DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md) - Step-by-step guide |
+| 🚀 **Get started fast** | [QUICKSTART.md](docs/QUICKSTART.md) - Commands & 10-min setup |
+| 📖 **Complete deployment** | [DEPLOYMENT_STEPS.md](docs/DEPLOYMENT_STEPS.md) - Step-by-step guide |
 | 📊 **Strategy details** | This README - Architecture & overview |
 | 🔧 **Configuration** | [config/config.example.yaml](config/config.example.yaml) - Settings template |
 
