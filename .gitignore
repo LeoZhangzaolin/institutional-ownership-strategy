@@ -33,7 +33,7 @@ ENV/
 *.swo
 *~
 
-# Data (IMPORTANT - never commit data!)
+# Data
 data/13f_parquet/
 data/cache/
 data/models/
@@ -42,6 +42,12 @@ data/signals/
 *.csv
 *.pkl
 *.pickle
+
+# Allow the folder itself
+!data/13f_parquet/
+
+# Allow parquet files inside this folder (including subfolders)
+!data/13f_parquet/**/*.parquet
 
 # Logs
 logs/
