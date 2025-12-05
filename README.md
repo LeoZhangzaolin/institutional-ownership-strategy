@@ -435,13 +435,6 @@ python -c "import wrds; db = wrds.Connection(wrds_username='YOUR_USERNAME'); pri
 
 ---
 
-## 📚 DOCUMENTATION
-
-**For detailed guides:**
-- 📖 **[QUICKSTART.md](QUICKSTART.md)** - Quick reference & command cheat sheet
-- 📖 **[DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md)** - Complete step-by-step deployment
-- 📖 **[docs/](docs/)** - Additional documentation
-
 **Key commands:**
 ```bash
 # Complete pipeline
@@ -528,7 +521,7 @@ Months 4+: Live Trading (Gradual)
 **Time to first paper trade:** 1-2 days  
 **Time to live trading:** 1-3 months (with testing)
 
-See **[DEPLOYMENT_STEPS.md](DEPLOYMENT_STEPS.md)** for complete guide.
+See **[DEPLOYMENT_STEPS.md](docs/DEPLOYMENT_STEPS.md)** for complete guide.
 
 
 ## 📊 13F Data Setup - Important!
